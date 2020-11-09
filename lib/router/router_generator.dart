@@ -27,6 +27,9 @@ class RouterGenerator {
   /// Results Routing
   static const routeResult = "/result";
 
+  /// Results Routing
+  static const routeProfile = "/profile";
+
   /// Initialize route
   static Route<dynamic> generate(RouteSettings settings) {
     /// Declaring argument route
