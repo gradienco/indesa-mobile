@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:indesa_beta/animation/fade_transition.dart';
 import 'package:indesa_beta/pages/dashboard/dashboard.dart';
+import 'package:indesa_beta/pages/location/desa/desa_page.dart';
+import 'package:indesa_beta/pages/location/kabupaten/kabupaten_page.dart';
+import 'package:indesa_beta/pages/location/kecamatan/kecamatan_page.dart';
+import 'package:indesa_beta/pages/location/provinsi/provinsi_page.dart';
 import 'package:indesa_beta/pages/login/login_page.dart';
 import 'package:indesa_beta/pages/splash/splash_page.dart';
 import 'package:indesa_beta/pages/survey/survey_page.dart';
@@ -27,8 +31,11 @@ class RouterGenerator {
   /// Results Routing
   static const routeResult = "/result";
 
-  /// Results Routing
-  static const routeProfile = "/profile";
+  /// Choose Location Routing
+  static const routeProvinsi = "/provinsi";
+  static const routeKabupaten= "/kabupaten";
+  static const routeKecamatan = "/kecamatan";
+  static const routeDesa = "/desa";
 
   /// Initialize route
   static Route<dynamic> generate(RouteSettings settings) {
@@ -45,6 +52,14 @@ class RouterGenerator {
         return FadeRoute(page: Dashboard());
       case routeSurvey:
         return FadeRoute(page: SurveyPage());
+      case routeProvinsi:
+        return FadeRoute(page: ListProvinsiPage());
+      case routeKabupaten:
+        return FadeRoute(page: ListKabupatenPage(args));
+      case routeKecamatan:
+        return FadeRoute(page: ListKecamatanPage(args));
+      case routeDesa:
+        return FadeRoute(page: ListDesaPage(args));
 
       // case routeResult:
       //   if(args is int) {

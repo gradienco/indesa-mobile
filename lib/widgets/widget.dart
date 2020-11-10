@@ -8,3 +8,4 @@ export 'list_tile/list_tile_history.dart';
 export 'list_tile/list_tile_profile.dart';
 export 'list_tile/list_tile_help.dart';
 export 'dialog_box/dialog_box.dart';
+export 'list_tile/list_tile_location.dart';

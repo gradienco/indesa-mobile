@@ -66,7 +66,7 @@ class HomeBody extends StatelessWidget {
           deviceHeight: deviceHeight(),
           deviceWidth: deviceWidth(),
           onTap: (){
-            Navigator.pushReplacementNamed(context, RouterGenerator.routeSurvey);
+            Navigator.pushNamed(context, RouterGenerator.routeProvinsi);
           },
         ),
 

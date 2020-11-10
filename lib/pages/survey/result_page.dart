@@ -106,7 +106,7 @@ class ResultPage extends StatelessWidget {
                   Navigator.of(context).pushReplacementNamed(RouterGenerator.routeDashboard);
                 },
                 color: cDarkGreen,
-                child: Text("Beranda", style: TextStyle(color: Colors.white),),
+                child: Text("Submit Hasil Survey", style: TextStyle(color: Colors.white),),
               ),
             ),
           ),
