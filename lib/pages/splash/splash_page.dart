@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:indesa_beta/constant/constant.dart';
 import 'package:indesa_beta/router/router_generator.dart';
+import 'package:indesa_beta/utils/utils.dart';
 
 class Splash extends StatefulWidget {
   @override
@@ -9,12 +10,24 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
+
+  DatabaseHelper _dbHelper = DatabaseHelper();
+
+  void _checkToken() async{
+    try {
+      var r = await _dbHelper.checkToken();
+      if(r.isNotEmpty)
+        Navigator.pushReplacementNamed(context, RouterGenerator.routeDashboard);
+    } catch (error) {
+      Navigator.pushReplacementNamed(context, RouterGenerator.routeLogin);
+    }
+  }
+
   @override
   void initState() {
     Timer(Duration(milliseconds: 1000), (){
-      Navigator.pushReplacementNamed(context, RouterGenerator.routeLogin);
+      _checkToken();
     });
-
     super.initState();
   }
 

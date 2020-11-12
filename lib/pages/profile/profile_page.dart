@@ -1,8 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:indesa_beta/constant/constant.dart';
+import 'package:indesa_beta/router/router_generator.dart';
+import 'package:indesa_beta/utils/utils.dart';
 import 'package:indesa_beta/widgets/widget.dart';
+import 'package:sqflite/sqflite.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+
+  DatabaseHelper _dbHelper = DatabaseHelper();
+  String _nama ="", _username="", _email="", _noHp="", _nik="";
+
+  void _getUserData(){
+    final Future<Database> dbFuture = _dbHelper.initializeDatabase();
+    dbFuture.then((database){
+      Future<Map<String, dynamic>> userData = _dbHelper.getUser();
+      userData.then((data){
+        setState(() {
+          _nama = data['nama_lengkap'];
+          _username = data['username'];
+          _email = data['email'];
+          _noHp = data['no_hp'];
+          _nik = data['nik'];
+        });
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    _getUserData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +53,7 @@ class ProfilePage extends StatelessWidget {
 
           Center(
             child: Text(
-              "Alun Paranggi Wicaksono",
+              _nama,
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 19,
@@ -46,28 +80,28 @@ class ProfilePage extends StatelessWidget {
           ListTileProfile(
               icon: "user",
               title: "Username",
-              subtitle: "alunparanggi",
+              subtitle: _username,
               onTap: (){}
           ),
 
           ListTileProfile(
               icon: "email",
               title: "Email",
-              subtitle: "alunparanggi@gmail.com",
+              subtitle: _email,
               onTap: (){}
           ),
 
           ListTileProfile(
               icon: "phone",
               title: "No. Hp",
-              subtitle: "085156220370",
+              subtitle: _noHp,
               onTap: (){}
           ),
 
           ListTileProfile(
               icon: "nik",
               title: "NIK",
-              subtitle: "1810043103990002",
+              subtitle: _nik,
               onTap: (){}
           ),
 
@@ -80,19 +114,27 @@ class ProfilePage extends StatelessWidget {
           ),
 
           ListTile(
-            onTap: (){},
+            onTap: () async{
+              var result = await _dbHelper.deleteUserData();
+              if(result != 0){
+                showToast("Logout berhasil", context);
+                Navigator.pushNamedAndRemoveUntil(context, RouterGenerator.routeLogin, (route) => false);
+              } else {
+                showToast("Logout gagal", context);
+              }
+            },
             leading: Image(
               image: AssetImage("$imageAssetProfile/logout.png"),
               width: 35,
               height: 35,
             ),
             title: Text("Keluar",
-            style: TextStyle(
-              color: Colors.red,
-              fontSize: setFontSize(50)
-            ),),
+              style: TextStyle(
+                  color: Colors.red,
+                  fontSize: setFontSize(50)
+              ),),
           ),
-          
+
           Padding(
             padding: EdgeInsets.all(10),
           )
@@ -102,3 +144,4 @@ class ProfilePage extends StatelessWidget {
     );
   }
 }
+
