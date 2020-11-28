@@ -59,5 +59,6 @@ class User{
   //   this._expired = map['expired'];
   //   this._namaRole = map['namaRole'];
   //   this._token = map['token'];
+// flutter packages pub run build_runner build
   // }
 }

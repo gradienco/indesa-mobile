@@ -1,3 +1,5 @@
+import 'package:graphql_flutter/graphql_flutter.dart';
+
 ///
 /// untuk pilih lokasi
 ///
@@ -36,5 +38,24 @@ String getDesa(int idKecamatan) {
     namaDesa
   }
 }""");
+}
+
+QueryOptions getSurvey(){
+  var query = """
+  {
+  survey{
+    id
+    waktu
+    tipe
+    poinIdm
+    desa{
+      namaDesa
+    }
+  }
+}
+""";
+  return QueryOptions(
+    documentNode: gql(query)
+  );
 }
 

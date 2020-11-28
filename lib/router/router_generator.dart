@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:indesa_beta/animation/fade_transition.dart';
 import 'package:indesa_beta/pages/dashboard/dashboard.dart';
+import 'package:indesa_beta/pages/history_soal/history_soal_page.dart';
 import 'package:indesa_beta/pages/location/desa/desa_page.dart';
 import 'package:indesa_beta/pages/location/kabupaten/kabupaten_page.dart';
 import 'package:indesa_beta/pages/location/kecamatan/kecamatan_page.dart';
@@ -31,6 +32,9 @@ class RouterGenerator {
   /// Results Routing
   static const routeResult = "/result";
 
+  /// History Quiz Routing
+  static const routeHistoryQuiz = "/history_quiz";
+
   /// Choose Location Routing
   static const routeProvinsi = "/provinsi";
   static const routeKabupaten= "/kabupaten";
@@ -51,7 +55,7 @@ class RouterGenerator {
       case routeDashboard:
         return FadeRoute(page: Dashboard());
       case routeSurvey:
-        return FadeRoute(page: SurveyPage());
+        return FadeRoute(page: SurveyPage(args));
       case routeProvinsi:
         return FadeRoute(page: ListProvinsiPage());
       case routeKabupaten:
@@ -60,6 +64,8 @@ class RouterGenerator {
         return FadeRoute(page: ListKecamatanPage(args));
       case routeDesa:
         return FadeRoute(page: ListDesaPage(args));
+      case routeHistoryQuiz :
+        return FadeRoute(page: HistorySoalPage(args));
 
       // case routeResult:
       //   if(args is int) {

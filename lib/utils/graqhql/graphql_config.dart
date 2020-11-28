@@ -8,9 +8,12 @@ class GraphQlConfig {
 
   static String _token;
 
- // static final AuthLink authLink = AuthLink(getToken: () => _token);
+ static final AuthLink authLink = AuthLink(
+     getToken: () => 'Bearer $_token');
 
   static Link link = httpLink;
+
+  static Link linkAuth = authLink.concat(httpLink);
 
   static ValueNotifier<GraphQLClient> initializeClient () {
     ValueNotifier<GraphQLClient> client =
@@ -23,9 +26,29 @@ class GraphQlConfig {
     return client;
   }
 
+  static ValueNotifier<GraphQLClient> initializeClientAuth(String token) {
+    _token = token;
+    ValueNotifier<GraphQLClient> client =
+    ValueNotifier(
+        GraphQLClient(
+            cache: InMemoryCache(), //OptimisticCache(dataIdFromObject: typenameDataIdFromObject),
+            link: linkAuth
+        )
+    );
+    return client;
+  }
+
   GraphQLClient clientToQuery() {
     return GraphQLClient(
       link: link,
+      cache: OptimisticCache(dataIdFromObject: typenameDataIdFromObject),
+    );
+  }
+
+  GraphQLClient clientToQueryAuth(String token) {
+    _token = token;
+    return GraphQLClient(
+      link: linkAuth,
       cache: OptimisticCache(dataIdFromObject: typenameDataIdFromObject),
     );
   }

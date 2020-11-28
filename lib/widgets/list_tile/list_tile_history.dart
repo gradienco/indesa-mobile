@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:indesa_beta/constant/constant.dart';
 
 class ListTileHistory extends StatelessWidget {
-  String date, desa, score;
+  String desa, kategori, poinIDM;
   ListTileHistory({
-    @required this.date,
-    @required this.score,
+    @required this.poinIDM,
+    @required this.kategori,
     @required this.desa,
   });
 
@@ -17,21 +17,22 @@ class ListTileHistory extends StatelessWidget {
           Row(
             children: [
               Flexible(
-                flex: 1,
+                flex: 3,
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    date,
+                    desa,
                     style: TextStyle(
                         color: cDarkGreen,
-                        fontSize: setFontSize(45)
+                        fontSize: setFontSize(45),
+                      fontWeight: FontWeight.bold
                     ),
                   ),
                 ),
               ),
 
               Flexible(
-                flex: 1,
+                flex: 2,
                 child: Container(),
               ),
 
@@ -42,18 +43,18 @@ class ListTileHistory extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        desa,
+                        poinIDM,
                         style: TextStyle(
-                            fontSize: setFontSize(55),
+                            fontSize: setFontSize(40),
                             color: cDarkGreen,
-                            fontWeight: FontWeight.bold
                         ),
                       ),
                       Text(
-                        score,
+                        kategori,
                         style: TextStyle(
-                            fontSize: setFontSize(40),
-                            color: cDarkGreen
+                            fontSize: setFontSize(43),
+                            color: cDarkGreen,
+                          fontWeight: FontWeight.bold
                         ),
                       )
                     ],

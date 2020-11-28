@@ -100,7 +100,7 @@ class _ListDesaPageState extends State<ListDesaPage> {
                         Navigator.pop(context);
                         Navigator.pop(context);
                         Navigator.pop(context);
-                        Navigator.of(context).pushReplacementNamed(RouterGenerator.routeSurvey);
+                        Navigator.of(context).pushReplacementNamed(RouterGenerator.routeSurvey, arguments: idDesa);
                       },
                     );
                   });

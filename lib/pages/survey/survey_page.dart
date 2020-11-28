@@ -8,6 +8,9 @@ import 'package:indesa_beta/widgets/widget.dart';
 import 'result_page.dart';
 
 class SurveyPage extends StatefulWidget {
+  int desaID;
+  SurveyPage(this.desaID);
+
   @override
   _SurveyPageState createState() => _SurveyPageState();
 }
@@ -20,6 +23,7 @@ class _SurveyPageState extends State<SurveyPage> {
   int _questionIndex = 0;
   int _selectedValue = 6;
   int _unAnsweredQuestion = 0;
+  int _iSos = 0, _iL=0, _iEk=0;
   bool _isAnsweredAll = true;
   Answer answer;
   List<Answer> answers = List();
@@ -74,6 +78,9 @@ class _SurveyPageState extends State<SurveyPage> {
             _iamSure = true;
             Navigator.pop(context);
             print("total skor : ${_totalScore}");
+            print("sosial : $_iSos");
+            print("ekonomi : $_iEk");
+            print("lingkungan : $_iL");
             _onNext();
 
           },
@@ -88,6 +95,10 @@ class _SurveyPageState extends State<SurveyPage> {
 
         RaisedButton(
           onPressed: (){
+            _totalScore = 0;
+            _iEk = 0;
+            _iSos = 0;
+            _iL = 0;
             Navigator.pop(context);
           },
           color: Colors.red,
@@ -149,6 +160,22 @@ class _SurveyPageState extends State<SurveyPage> {
             _isAnsweredAll = false;
           }
 
+          // if (i <= 1)
+          if(i <= 37) {
+            _iSos += answers[i].value;
+          }
+
+          // if (i > 1 && i <= 3)
+          if(i > 37 && i <= 49) {
+            _iEk += answers[i].value;
+          }
+
+
+          // if(i > 3 && i <= 4)
+          if(i > 49 && i <= 53) {
+            _iL += answers[i].value;
+          }
+
           print("menambahkan nilai soal ke - ${i+1}");
           _totalScore += answers[i].value;
         }
@@ -156,6 +183,9 @@ class _SurveyPageState extends State<SurveyPage> {
         //jika terdapat soal yang belum dijawab maka tampilkan warning dialog
         if (!_isAnsweredAll){
           _totalScore = 0;
+          _iSos = 0;
+          _iEk = 0;
+          _iL = 0;
           // showWarningDialog(context, _unAnsweredQuestion);
           DialogBox().showWarningDialog(context, _unAnsweredQuestion);
         } else {
@@ -256,114 +286,99 @@ class _SurveyPageState extends State<SurveyPage> {
       child: Scaffold(
         body:
         (_questionIndex<_qna.listQNA.length) ?
-        SizedBox.expand(
-          child: Container(
-            color: cDarkGreen,
-            child: Column(
-              children: [
+        Container(
+          color: cDarkGreen,
+          child: ListView(
+            children: [
 
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 50, bottom: 6, left: deviceWidth() * 0.055),
-                    child: Text(
-                      "Pertanyaan ${_questionIndex+1}/${_qna.listQNA.length}",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold
-                      ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 20, bottom: 6, left: deviceWidth() * 0.055),
+                  child: Text(
+                    "Pertanyaan ${_questionIndex+1}/${_qna.listQNA.length}",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold
                     ),
                   ),
                 ),
+              ),
 
-                ProgressBar(
-                  width: deviceWidth() * 0.9,
-                  progress: (_questionIndex+1)/_qna.listQNA.length,
+              Padding(
+                padding: EdgeInsets.only(left: deviceWidth()*0.055),
+                child: Row(
+                  children: [
+                    ProgressBar(
+                      width: deviceWidth() * 0.75,
+                      progress: (_questionIndex+1)/_qna.listQNA.length,
+                    ),
+
+                    IconButton(
+                      icon: Icon(Icons.apps,
+                      color: Colors.white,),
+                      onPressed: (){
+                        Navigator.pushNamed(context, RouterGenerator.routeHistoryQuiz, arguments: answers);
+                      },
+                    )
+                  ],
                 ),
+              ),
 
-                Container(
-                  height: deviceHeight() * 0.8,
-                  width: deviceWidth() *0.9,
-                  margin: EdgeInsets.only(top: 30),
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.white,
-                  ),
-                  child: Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment.topCenter,
-                        child: Quiz(
-                          onChangeValue: _onSelectAnswer,
-                          questionIndex: _questionIndex,
-                          qna: _qna,
-                          selectedValue: _selectedValue,
-                          defaultValue: getValue(_questionIndex),
+              Container(
+                height: deviceHeight() * 0.8,
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: deviceWidth()*0.05),
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Colors.white,
+                ),
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: Quiz(
+                        onChangeValue: _onSelectAnswer,
+                        questionIndex: _questionIndex,
+                        qna: _qna,
+                        selectedValue: _selectedValue,
+                        defaultValue: getValue(_questionIndex),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            NextPrevButton(
+                              icon: Icons.keyboard_arrow_left,
+                              onTap: _onPrevious,
+                            ),
+
+                            NextPrevButton(
+                              icon: Icons.keyboard_arrow_right,
+                              onTap: _onNext,
+                            ),
+                          ],
                         ),
                       ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: EdgeInsets.only(bottom: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              InkWell(
-                                onTap: _onPrevious,
-                                child: Container(
-                                  margin: EdgeInsets.only(right: 10),
-                                  padding: EdgeInsets.all(6),
-                                  decoration: BoxDecoration(
-                                      color: cDarkGreen,
-                                      borderRadius: BorderRadius.circular(6),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Colors.black.withOpacity(0.4),
-                                            blurRadius: 6,
-                                            spreadRadius: 2,
-                                            offset: Offset(-2,3)
-                                        ),
-                                      ]
-                                  ),
-                                  child: Icon(Icons.keyboard_arrow_left,
-                                    color: Colors.white,),
-                                ),
-                              ),
-                              InkWell(
-                                onTap: _onNext,
-                                child: Container(
-                                  margin: EdgeInsets.only(left: 10),
-                                  padding: EdgeInsets.all(6),
-                                  decoration: BoxDecoration(
-                                      color: cDarkGreen,
-                                      borderRadius: BorderRadius.circular(6),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Colors.black.withOpacity(0.4),
-                                            blurRadius: 6,
-                                            spreadRadius: 2,
-                                            offset: Offset(-2, 3)
-                                        ),
-                                      ]
-                                  ),
-                                  child: Icon(Icons.keyboard_arrow_right,
-                                    color: Colors.white,),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
+                    )
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ) :
-        ResultPage(_totalScore),
+        ResultPage(
+          _totalScore,
+          _iSos,
+          _iEk,
+          _iL,
+          widget.desaID
+        ),
       ),
     );
   }

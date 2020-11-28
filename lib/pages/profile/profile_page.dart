@@ -43,31 +43,34 @@ class _ProfilePageState extends State<ProfilePage> {
       body: ListView(
         children: [
 
-          Padding(
-            padding: const EdgeInsets.only(top: 50, bottom: 15),
-            child: CircleImage(
-              width: 110,
-              image: AssetImage("$imageAssetProfile/profile.jpg"),
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 50, bottom: 15),
+          //   child: CircleImage(
+          //     width: 110,
+          //     image: AssetImage("$imageAssetProfile/profile.jpg"),
+          //   ),
+          // ),
 
-          Center(
-            child: Text(
-              _nama,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 19,
-                  color: cDarkGreen
+          Padding(
+            padding: EdgeInsets.only(top: 56, bottom: 20),
+            child: Center(
+              child: Text(
+                _nama,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: setFontSize(65),
+                    color: cDarkGreen
+                ),
               ),
             ),
           ),
 
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Label(
-              totalSurvey: "10",
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.all(10.0),
+          //   child: Label(
+          //     totalSurvey: "10",
+          //   ),
+          // ),
 
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),

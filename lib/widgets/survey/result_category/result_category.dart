@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ResultCategory extends StatelessWidget {
   String category;
-  int score;
+  double score;
   ResultCategory({
     @required this.category,
     @required this.score

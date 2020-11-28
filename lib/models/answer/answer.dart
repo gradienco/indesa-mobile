@@ -1,7 +1,6 @@
 class Answer {
 
-  int _questionNumber;
-  int _value;
+  int _questionNumber, _value;
 
   Answer(this._questionNumber, this._value);
 
