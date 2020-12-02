@@ -7,6 +7,7 @@ class DatabaseHelper{
   static DatabaseHelper _databaseHelper;
   static Database _database;
 
+  //user
   String userTable = "user_table";
   String colUserId = "user_id";
   String colEmail = "email";
@@ -19,6 +20,17 @@ class DatabaseHelper{
   String colNamaRole = "nama_role";
   String colToken = "token";
   String colExpired = "expired";
+
+  //survey
+  String surveyTable = "survey_table";
+  String colSurveyId = "survey_id";
+  String colUser = "user_id";
+  String colDesa = "desa_id";
+  String colIKS = "iks";
+  String colIKE = "ike";
+  String colIKL = "ikl";
+  String colIDM = "idm";
+  String colAnswer = "answer";
 
   DatabaseHelper._createInstance();
 
@@ -43,14 +55,26 @@ class DatabaseHelper{
     Directory directory = await getApplicationDocumentsDirectory();
     String path = directory.path + 'notes.db';
 
-    var notesDatabase = await openDatabase(path, version: 1, onCreate: _createUserDb);
+    var notesDatabase = await openDatabase(path, version: 1, onCreate: _createDb);
     return notesDatabase;
   }
 
-  void _createUserDb(Database db, int newVersion) async{
+  void _createDb(Database db, int newVersion) async{
+    await db.execute('''
+      CREATE TABLE $surveyTable(
+        $colSurveyId INTEGER PRIMARY KEY, 
+        $colUser INT, 
+        $colDesa INT, 
+        $colIKS DECIMAL (17,16), 
+        $colIKE DECIMAL (17,16),
+        $colIKL DECIMAL (17,16),
+        $colIDM DECIMAL (17,16), 
+        $colAnswer TEXT)
+    ''');
+
     await db.execute('''
       CREATE TABLE $userTable(
-        $colUserId INTEGER PRIMARY KEY AUTOINCREMENT, 
+        $colUserId INTEGER PRIMARY KEY, 
         $colEmail TEXT, 
         $colUsername TEXT, 
         $colNamaLengkap TEXT, 
@@ -60,11 +84,11 @@ class DatabaseHelper{
         $colRole INT, 
         $colNamaRole TEXT,
         $colToken TEXT,
-        $colExpired INT)
+        $colExpired INT);
     ''');
   }
 
-  //fetch
+  //fetch data user
   Future<Map<String, dynamic>>getUser() async {
     Database db = await this.database;
     //  var result = await db.rawQuery('SELECT * FROM $noteTable order by $colPriority ASC');
@@ -81,14 +105,14 @@ class DatabaseHelper{
     return token;
   }
 
-  //insert
+  //insert data user
   Future<int> insertUserData(User user) async {
     Database db = await this.database;
     var result = await db.insert(userTable, user.toMap());
     return result;
   }
 
-  //delete
+  //delete data user
   Future<int> deleteUserData() async {
     Database db = await this.database;
    // var result = await db.rawDelete('DELETE FROM $noteTable WHERE $colId = $id');
@@ -96,18 +120,20 @@ class DatabaseHelper{
     return result;
   }
 
-  //get the 'map list' [List<map>] and convert it to 'user data' [List<Note>]
-  // Future<Map<String, dynamic>> getUserData() async{
-  //
-  //   var noteMapList = await getNoteMapList();
-  //   int count = noteMapList.length;
-  //
-  //   List<Note> noteList = List<Note>();
-  //
-  //   for(int i=0; i<count; i++){
-  //     noteList.add(Note.fromMapObject(noteMapList[i]));
-  //   }
-  //
-  //   return noteList;
-  // }
+  //insert data survey
+  Future<int> insertSurveyData(Survey survey) async {
+    Database db = await this.database;
+    var result = await db.insert(surveyTable, survey.toMap());
+    return result;
+  }
+
+  //fetch data survey
+  Future<Map<String, dynamic>>getSurveyData(int surveyId) async {
+    Database db = await this.database;
+    //  var result = await db.rawQuery('SELECT * FROM $noteTable order by $colPriority ASC');
+    var result = await db.query(surveyTable, where: "$colSurveyId = $surveyId");
+    var surveyData = result[0];
+    return surveyData;
+  }
+
 }

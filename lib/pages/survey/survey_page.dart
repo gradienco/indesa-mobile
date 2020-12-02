@@ -161,18 +161,21 @@ class _SurveyPageState extends State<SurveyPage> {
           }
 
           // if (i <= 1)
-          if(i <= 37) {
+          if(i <= 37)
+          {
             _iSos += answers[i].value;
           }
 
           // if (i > 1 && i <= 3)
-          if(i > 37 && i <= 49) {
+          if(i > 37 && i <= 49)
+          {
             _iEk += answers[i].value;
           }
 
 
           // if(i > 3 && i <= 4)
-          if(i > 49 && i <= 53) {
+          if(i > 49 && i <= 53)
+          {
             _iL += answers[i].value;
           }
 
@@ -377,7 +380,8 @@ class _SurveyPageState extends State<SurveyPage> {
           _iSos,
           _iEk,
           _iL,
-          widget.desaID
+          widget.desaID,
+          answers
         ),
       ),
     );

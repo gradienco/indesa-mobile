@@ -4,6 +4,20 @@ class Answer {
 
   Answer(this._questionNumber, this._value);
 
+  Map toJson() => {
+    'question_number': questionNumber,
+    'value': value,
+  };
+
+  factory Answer.fromJson(dynamic json) {
+    return Answer(json['question_number'] as int, json['value'] as int);
+  }
+
+  @override
+  String toString() {
+    return '{ ${this._questionNumber}, ${this._value} }';
+  }
+
   Answer.map(dynamic obj){
     this._questionNumber = obj['question_number'];
     this._value = obj['value'];

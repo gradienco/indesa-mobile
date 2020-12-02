@@ -34,7 +34,7 @@ class _HistorySoalPageState extends State<HistorySoalPage> with SingleTickerProv
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Center(child: Text('Riwayat Soal')),
+          title: Text('Riwayat Soal'),
           backgroundColor: cDarkGreen,
           bottom: TabBar(
               controller: controller,

@@ -35,6 +35,9 @@ class RouterGenerator {
   /// History Quiz Routing
   static const routeHistoryQuiz = "/history_quiz";
 
+  /// History Quiz Routing
+  // static const routeHistoryQuiz = "/history_quiz";
+
   /// Choose Location Routing
   static const routeProvinsi = "/provinsi";
   static const routeKabupaten= "/kabupaten";

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:indesa_beta/constant/constant.dart';
+import 'package:indesa_beta/models/models.dart';
 import 'package:indesa_beta/router/router_generator.dart';
 import 'package:indesa_beta/utils/utils.dart';
 import 'package:indesa_beta/widgets/widget.dart';
@@ -8,7 +9,8 @@ import 'package:sqflite/sqflite.dart';
 
 class ResultPage extends StatefulWidget {
   int totalScore, iSos, iEk, iL, desaId;
-  ResultPage(this.totalScore, this.iSos, this.iEk, this.iL, this.desaId);
+  List<Answer> answers;
+  ResultPage(this.totalScore, this.iSos, this.iEk, this.iL, this.desaId, this.answers);
 
   @override
   _ResultPageState createState() => _ResultPageState();
@@ -20,6 +22,7 @@ class _ResultPageState extends State<ResultPage> {
   String token ="";
   int userId = 0,tipe=0;
   GraphQlConfig _config = GraphQlConfig();
+  bool _isBusy = false;
 
   void _getUserData(){
     final Future<Database> dbFuture = _dbHelper.initializeDatabase();
@@ -78,26 +81,55 @@ class _ResultPageState extends State<ResultPage> {
     var _idm = _getIDM(_iSos, _iEk, _iL);
     var _category = _getCategory(_idm);
 
-    void _submitDataSurvey() async{
+    void _submitDataSurvey() async {
       GraphQLClient _client =_config.clientToQueryAuth(token);
       try {
+        setState(() {
+          _isBusy = true;
+        });
         var result = await _client.mutate(addSurveyOptions(userId, widget.desaId, tipe, _iSos, _iEk, _iL, _idm));
         var data = result.data['addSurvey'];
         print('id addsurvey : ${data['id']}');
+        var insertData = await _dbHelper.insertSurveyData(
+          Survey(
+            userId,
+            widget.desaId,
+            data['id'],
+            _iSos,
+            _iEk,
+            _iL,
+            _idm,
+            widget.answers
+          )
+        );
+        if (insertData != 0) {
+          print('data inserted');
+        } else {
+          print('insert data failed');
+          setState(() {
+            _isBusy = false;
+          });
+        }
         if(data != null){
           showToast("Data Survey berhasil disubmit", context);
           Navigator.of(context).pushReplacementNamed(RouterGenerator.routeDashboard);
         } else {
           showToast("Gagal submit data", context);
+          setState(() {
+            _isBusy = false;
+          });
         }
         // bloc.loginSink.add(Status.success);
       } catch (error) {
         debugPrint('$error');
+        setState(() {
+          _isBusy = false;
+        });
       }
     }
 
     setupScreenUtil(context);
-    return Scaffold(
+    return !_isBusy ? Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
         children: [
@@ -222,6 +254,8 @@ class _ResultPageState extends State<ResultPage> {
           )
         ],
       ),
+    ) : Center(
+      child: CircularProgressIndicator(),
     );
   }
 }

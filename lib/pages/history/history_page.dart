@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:indesa_beta/constant/constant.dart';
+import 'package:indesa_beta/models/models.dart';
+import 'package:indesa_beta/router/router_generator.dart';
 import 'package:indesa_beta/utils/utils.dart';
 import 'package:indesa_beta/widgets/widget.dart';
 import 'package:sqflite/sqflite.dart';
@@ -30,6 +34,7 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
 
+  String _answers="";
   String _token="";
   DatabaseHelper _dbHelper = DatabaseHelper();
 
@@ -40,6 +45,22 @@ class _BodyState extends State<Body> {
       userData.then((data){
         setState(() {
           _token = data['token'];
+        });
+      });
+    });
+  }
+
+  void _getSurveyData(int surveyId){
+    final Future<Database> dbFuture = _dbHelper.initializeDatabase();
+    dbFuture.then((database){
+      Future<Map<String, dynamic>> surveyData = _dbHelper.getSurveyData(surveyId);
+      surveyData.then((data){
+        setState(() {
+          _answers = data['answer'];
+          var tagObjsJson = jsonDecode(_answers)['answer'] as List;
+          List<Answer> answerObj = tagObjsJson.map((answerObj) => Answer.fromJson(answerObj)).toList();
+          Navigator.pushNamed(context, RouterGenerator.routeHistoryQuiz, arguments: answerObj);
+          print(_answers);
         });
       });
     });
@@ -89,9 +110,12 @@ class _BodyState extends State<Body> {
               }
               return Center(
                 child: ListTileHistory(
-                    poinIDM: item[index]['poinIdm'].toStringAsFixed(3),
-                    desa: item[index]['desa']['namaDesa'],
-                    kategori: _getCategory(item[index]['poinIdm'])
+                  poinIDM: item[index]['poinIdm'].toStringAsFixed(3),
+                  desa: item[index]['desa']['namaDesa'],
+                  kategori: _getCategory(item[index]['poinIdm']),
+                  onTap: (){
+                    _getSurveyData(item[index]['id']);
+                  }
                 ),
               );
             }

@@ -72,7 +72,6 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.pushReplacementNamed(context, RouterGenerator.routeDashboard);
       } else {
         print('insert data failed');
-        showToast('hahaha mampos', context);
       }
      // bloc.loginSink.add(Status.success);
     } catch (error) {

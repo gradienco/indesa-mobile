@@ -20,7 +20,7 @@ class IndexSosial extends StatelessWidget {
       backgroundColor: cDarkGreen,
       body: ListView.builder(
        itemCount: 38,
-       //  itemCount: 2,
+        // itemCount: 2,
         itemBuilder: (context, i) {
           return HistoryQuiz(
             questionIndex: i,
