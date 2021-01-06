@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:indesa_beta/constant/constant.dart';
-import 'package:indesa_beta/widgets/widget.dart';
 
 class HelpPage extends StatelessWidget {
   @override
@@ -70,30 +69,31 @@ class MyTile {
 }
 
 var ex = "Uniquely leverage other's best-of-breed niche markets whereas world-class deliverables. Authoritatively parallel task multidisciplinary total linkage through user-centric benefits. Rapidiously restore B2C technologies whereas global functionalities. Credibly transition e-business methodologies after dynamic action items.";
+var surveyIDM = "Untuk melakukan survei Indeks Desa Membangun (IDM) langkah langkah yang harus dilakukan adalah masuk ke Beranda kemudian pilih menu Indeks Desa Membangun. Selanjutnya Anda akan masuk kedalam laman pilih lokasi. Silahkan pilih desa yang ingin Anda survei, setelah itu Anda dapat melakukan survei IDM. Pilih lah jawaban sesuai dengan kondisi desa yang Anda survei. Anda akan melihat hasil survei setelah menyelesaikan survei tersebut. Pada laman hasil survei akan tampil nilai Indeks Ketahanan Sosial, Indeks Ketahanan Lingkungan, Indeks Ketahanan Ekonimi, dan Indeks Desa Membangun. Setelah melihat hasil survey, silahkan sentuh tombol \"Submit Data Hasil Survei\" untuk menyimpan data ke dalam database.";
 
 List<MyTile> listOfTiles = <MyTile>[
-  new MyTile(
+  MyTile(
     'Melakukan Survey IDM',
     <MyTile>[
-      new MyTile(ex),
+      MyTile(surveyIDM),
     ],
   ),
-  new MyTile(
-    'Melakukan Survey IPD',
-    <MyTile>[
-      new MyTile(ex),
-    ],
-  ),
-  new MyTile(
-    'Melakukan Survey Podes',
-    <MyTile>[
-      new MyTile(ex),
-    ],
-  ),
-  new MyTile(
-    'Melihat Indeks Desa',
-    <MyTile>[
-      new MyTile(ex),
-    ],
-  ),
+  // MyTile(
+  //   'Melakukan Survey IPD',
+  //   <MyTile>[
+  //     MyTile(ex),
+  //   ],
+  // ),
+  // MyTile(
+  //   'Melakukan Survey Podes',
+  //   <MyTile>[
+  //     MyTile(ex),
+  //   ],
+  // ),
+  // MyTile(
+  //   'Melihat Indeks Desa',
+  //   <MyTile>[
+  //     MyTile(ex),
+  //   ],
+  // ),
 ];

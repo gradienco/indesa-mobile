@@ -48,6 +48,9 @@ QueryOptions getSurvey(){
     waktu
     tipe
     poinIdm
+    poinIs
+    poinIek
+    poinIl
     desa{
       namaDesa
     }

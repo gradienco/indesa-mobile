@@ -53,10 +53,10 @@ class DatabaseHelper{
 
   Future<Database> initializeDatabase() async{
     Directory directory = await getApplicationDocumentsDirectory();
-    String path = directory.path + 'notes.db';
+    String path = directory.path + 'indesa.db';
 
-    var notesDatabase = await openDatabase(path, version: 1, onCreate: _createDb);
-    return notesDatabase;
+    var initDB = await openDatabase(path, version: 1, onCreate: _createDb);
+    return initDB;
   }
 
   void _createDb(Database db, int newVersion) async{
@@ -88,6 +88,13 @@ class DatabaseHelper{
     ''');
   }
 
+  //insert data user
+  Future<int> insertUserData(User user) async {
+    Database db = await this.database;
+    var result = await db.insert(userTable, user.toMap());
+    return result;
+  }
+
   //fetch data user
   Future<Map<String, dynamic>>getUser() async {
     Database db = await this.database;
@@ -103,13 +110,6 @@ class DatabaseHelper{
     var result = await db.query(userTable);
     var token = result[0]['token'];
     return token;
-  }
-
-  //insert data user
-  Future<int> insertUserData(User user) async {
-    Database db = await this.database;
-    var result = await db.insert(userTable, user.toMap());
-    return result;
   }
 
   //delete data user

@@ -31,7 +31,7 @@ class _SurveyPageState extends State<SurveyPage> {
   @override
   void initState() {
     for(int i = 0; i<= _qna.listQNA.length ; i++){
-      answers.add(Answer(i,6));
+      answers.add(Answer(i,6,0));
       print("jawaban sementara untuk soal ke- ${i+1} berhasil ditambah");
     }
     super.initState();
@@ -204,32 +204,34 @@ class _SurveyPageState extends State<SurveyPage> {
 
   }
 
+  void setValue(int i, int v, int id) {
+    answers[i].questionNumber = _questionIndex+1;
+    answers[i].value = v;
+    answers[i].id = id;
+  }
+
   void _next(){
 
     print("get val ($_questionIndex) : ${getValue(_questionIndex)}");
-    //  _totalScore += _selectedValue;
     setState(() {
       print("selected value = $_selectedValue");
-      setValue(_questionIndex, _selectedValue);
+      setValue(_questionIndex, _selectedValue, _qna.listQNA[_questionIndex]['id']);
       _questionIndex ++;
       _selectedValue = getValue(_questionIndex);
 
     });
-
-    //   print("total skor : ${_totalScore}");
-    print("value soal ke - ${_questionIndex} : ${answers[_questionIndex-1].value}");
 
   }
 
   void _onPrevious(){
 
     if(_questionIndex == 0){
-      print("gabisa prev woy!");
+      print("can not go to previous");
     } else {
       print("get val ($_questionIndex) : ${getValue(_questionIndex)}");
       setState(() {
         print("selected value = $_selectedValue");
-        setValue(_questionIndex, _selectedValue);
+        setValue(_questionIndex, _selectedValue, _qna.listQNA[_questionIndex]['id']);
         _questionIndex --;
         _selectedValue = getValue(_questionIndex);
       });
@@ -241,11 +243,6 @@ class _SurveyPageState extends State<SurveyPage> {
 
   int getValue(int i){
     return answers[i].value;
-  }
-
-  void setValue(int i, int v) {
-    answers[i].questionNumber = _questionIndex+1;
-    answers[i].value = v;
   }
 
   Future<bool> _onBackPressed() {
@@ -297,7 +294,11 @@ class _SurveyPageState extends State<SurveyPage> {
               Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
-                  padding: EdgeInsets.only(top: 20, bottom: 6, left: deviceWidth() * 0.055),
+                  padding: EdgeInsets.only(
+                      top: 20,
+                      bottom: 6,
+                      left: deviceWidth() * 0.055
+                  ),
                   child: Text(
                     "Pertanyaan ${_questionIndex+1}/${_qna.listQNA.length}",
                     style: TextStyle(

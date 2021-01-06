@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:indesa_beta/animation/fade_transition.dart';
+import 'package:indesa_beta/pages/answer_history/history_soal_page.dart';
 import 'package:indesa_beta/pages/dashboard/dashboard.dart';
-import 'package:indesa_beta/pages/history_soal/history_soal_page.dart';
 import 'package:indesa_beta/pages/location/desa/desa_page.dart';
 import 'package:indesa_beta/pages/location/kabupaten/kabupaten_page.dart';
 import 'package:indesa_beta/pages/location/kecamatan/kecamatan_page.dart';
@@ -68,7 +68,7 @@ class RouterGenerator {
       case routeDesa:
         return FadeRoute(page: ListDesaPage(args));
       case routeHistoryQuiz :
-        return FadeRoute(page: HistorySoalPage(args));
+        return FadeRoute(page: AnswerHistoryPage(args));
 
       // case routeResult:
       //   if(args is int) {

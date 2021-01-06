@@ -3,6 +3,7 @@ class QNA {
   var listQNA = [
 
     {
+      'id' : 1,
       'pertanyaan' : 'Dari lokasi atau posisi  tengah desa ini, berapa waktu tempuh ke prasarana kesehatan (puskesmas, klinik dokter atau rumah sakit) terdekat?',
       'jawaban' : [
         {'text' : 'waktu tempuh ke prasarana kesehatan < 30 menit dan dengan kondisi jalan yang sangat baik', 'score' : 5},
@@ -15,6 +16,7 @@ class QNA {
     },
 
     {
+      'id' : 2,
       'pertanyaan' : 'Berapa jumlah tenaga kesehatan bidan tersedia di desa ini?',
       'jawaban' : [
         {'text' : 'tersedia lebih dari 2 bidan yang memiliki sertifikat kompetensi', 'score' : 5},
@@ -27,6 +29,7 @@ class QNA {
     },
 
     {
+      'id' : 3,
       'pertanyaan' : 'Berapa tenaga kesehatan dokter tersedia di desa ini?',
       'jawaban' : [
         {'text' : 'terdapat 1 dokter yang stand by di Desa dan rasio dokter dengan jumlah penduduk 1 : 2.500 (WHO)', 'score' : 5},
@@ -39,6 +42,7 @@ class QNA {
     },
 
    {
+     'id' : 4,
      'pertanyaan' : 'Berapa tersedia tenaga kesehatan lainnya di desa  ini?',
      'jawaban' : [
        {'text' : '7 jenis tenaga kesehatan tersedia di Desa (Tenaga Medis, Keperawatan, Kefarmasian, TKM, Gizi, Keterapian, Keteknisan', 'score' : 5},
@@ -51,6 +55,7 @@ class QNA {
    },
 
    {
+     'id' : 5,
      'pertanyaan' : 'Dari lokasi atau posisi  tengah desa ini, berapa waktu tempuh ke poskesdes, polindes atau posyandu terdekat?',
      'jawaban' : [
        {'text' : 'terdapat poskesdes dan atau polindes dan posyandu yang dapat dicapai masyarakat dalam waktu  ≤ 10 menit', 'score' : 5},
@@ -63,6 +68,7 @@ class QNA {
    },
 
    {
+     'id' : 6,
      'pertanyaan' : 'Bagaimana Tingkat aktivitas posyandu di desa ini?',
      'jawaban' : [
        {'text' : 'Posyandu memberikan layanan utama yang meliputi KIA, KB, Imunisasi, dan Gizi serta serta minimal 1 kegiatan tambahan', 'score' : 5},
@@ -75,6 +81,7 @@ class QNA {
    },
 
    {
+     'id' : 7,
      'pertanyaan' : 'Bagaimana tingkat kepesertaan BPJS di desa ini?',
      'jawaban' : [
        {'text' : 'semua warga telah menjadi peserta BPJS', 'score' : 5},
@@ -87,6 +94,7 @@ class QNA {
    },
 
    {
+     'id' : 8,
      'pertanyaan' : 'Dari lokasi tengah desa, bagaimana akses jalan dan jarak jalan  ke tempat lokasi pendidikan dasar SD/MI?',
      'jawaban' : [
        {'text' : 'akses ke pendididan dasar berjarak < 6 km dengan kondisi jalan yang baik dan dapat ditempuh oleh siswa dengan mudah', 'score' : 5},
@@ -99,6 +107,7 @@ class QNA {
    },
 
    {
+     'id' : 9,
      'pertanyaan' : 'Dari lokasi tengah desa, bagaimana akses jalan dan jarak jalan  ke tempat lokasi pendidikan SMP/MTS?',
      'jawaban' : [
        {'text' : 'akses ke SMP/MTS berjarak < 6 km dengan kondisi jalan yang baik dan dapat ditempuh oleh siswa dengan mudah', 'score' : 5},
@@ -111,6 +120,7 @@ class QNA {
    },
 
    {
+     'id' : 10,
      'pertanyaan' : 'Dari lokasi tengah desa, bagaimana akses jalan dan jarak jalan  ke tempat lokasi pendidikan SMA/SMK?',
      'jawaban' : [
        {'text' : 'akses ke SMA/SMK berjarak < 6 km dengan kondisi jalan yang baik dan dapat ditempuh oleh siswa dengan mudah', 'score' : 5},
@@ -123,6 +133,7 @@ class QNA {
    },
 
    {
+     'id' : 11,
      'pertanyaan' : 'Bagaimana kegiatan pemberantasan buta aksara di desa ini?',
      'jawaban' : [
        {'text' : 'ada kegiatan pemberantasan buta aksara yang terlembaga, terencana, dan terjadwal dengan baik, dan atau Desa bebas buta aksara', 'score' : 5},
@@ -135,6 +146,7 @@ class QNA {
    },
 
    {
+     'id' : 12,
      'pertanyaan' : 'Bagaimana kegiatan PAUD di desa ini?',
      'jawaban' : [
        {'text' : 'ada kegiatan PAUD yang terlembaga, menempati lokasi yang layak, terjadwal dengan baik, dan memiliki guru yang bersertifikat sebagai pengajar PAUD', 'score' : 5},
@@ -147,6 +159,7 @@ class QNA {
    },
 
    {
+     'id' : 13,
      'pertanyaan' : 'Bagaimana Kegiatan PKBM/Paket ABC di desa ini?',
      'jawaban' : [
        {'text' : 'ada kegiatan PKBM/Paket ABC yang terlembaga, terjadwal dengan baik, aktif, dan  menempati lokasi yang layak', 'score' : 5},
@@ -159,6 +172,7 @@ class QNA {
    },
 
    {
+     'id' : 14,
      'pertanyaan' : 'Bagaimana kondisi akses ke pusat keterampilan/kursus? ',
      'jawaban' : [
        {'text' : 'di Desa terdapat beberapa pusat keterampilan/kursus yang bisa diakses oleh seluruh warga desa', 'score' : 5},
@@ -171,6 +185,7 @@ class QNA {
    },
 
    {
+     'id' : 15,
      'pertanyaan' : 'Bagaimana kondisi Taman Bacaan Masyarakat atau Perpustakaan Desa di desa ini?',
      'jawaban' : [
        {'text' : 'di Desa terdapat Taman Bacaan Masyarakat atau Perpustakaan Desa yang memiliki koleksi buku yang berkualitas, secara aktif dikunjungi oleh sebagian besar warga Desa dan menempati gedung yang layak', 'score' : 5},
@@ -183,6 +198,7 @@ class QNA {
    },
 
    {
+     'id' : 16,
      'pertanyaan' : 'Bagaimana Kebiasaan gotong royong di desa ini?',
      'jawaban' : [
        {'text' : 'gotong royong di Desa dilakukan secara rutin setiap minggu, melibatkan seluruh warga Desa dan atau pada saat-saat tertentu (misalnya membersihkan rumah ibadah, acara pernikahan, dll)', 'score' : 5},
@@ -195,6 +211,7 @@ class QNA {
    },
 
    {
+     'id' : 17,
      'pertanyaan' : 'Bagaimana Keberadaan ruang publik terbuka (alun-alun desa, sungai tempat berenang, taman desa)  bagi warga yg tidak berbayar di desa ini?',
      'jawaban' : [
        {'text' : 'Desa menyediakan ruang publik terbuka bagi warga yang tidak berbayar, aman, dan nyaman', 'score' : 5},
@@ -207,6 +224,7 @@ class QNA {
    },
 
    {
+     'id' : 18,
      'pertanyaan' : 'Bagaimana ketersediaan fasilitas/lapangan olahraga di desa ini?',
      'jawaban' : [
        {'text' : 'di Desa tersedia minimal 4 jenis fasilitas/lapangan olah raga yang secara aktif digunakan warga dan tidak berbayar', 'score' : 5},
@@ -219,6 +237,7 @@ class QNA {
    },
 
    {
+     'id' : 19,
      'pertanyaan' : 'Bagaimana kondisi kelompok kegiatan olahraga di desa ini?',
      'jawaban' : [
        {'text' : 'di Desa terdapat minimal 4 jenis kelompok kegiatan olah raga yang secara aktif menggunakan fasilitas yang ada', 'score' : 5},
@@ -231,6 +250,7 @@ class QNA {
    },
 
    {
+     'id' : 20,
      'pertanyaan' : 'Bagaimana kondisi warga desa ini? apakah terdiri dari beberapa suku/etnis?',
      'jawaban' : [
        {'text' : 'warga desa terdiri dari satu atau lebih suku/etnis, secara aktif bekerjasama dalam berbagai kegiatan di Desa dalam semangat saling menghormati', 'score' : 5},
@@ -243,6 +263,7 @@ class QNA {
    },
 
    {
+     'id' : 21,
      'pertanyaan' : 'Bagaimana suasana warga desa berkomunikasi sehari-hari? Apakah menggunakan bahasa yg berbeda?',
      'jawaban' : [
        {'text' : 'warga terdiri dari satu atau lebih suku/etnis dan berkomunikasi dengan menggunakan bahasa Indonesia', 'score' : 5},
@@ -255,6 +276,7 @@ class QNA {
    },
 
    {
+     'id' : 22,
      'pertanyaan' : 'Bagaimana kondisi keanekaragaman agama penduduk di Desa ini?',
      'jawaban' : [
        {'text' : 'warga desa menganut satu atau lebih agama, secara aktif bekerjasama dalam berbagai kegiatan di Desa dalam semangat saling menghormati', 'score' : 5},
@@ -267,6 +289,7 @@ class QNA {
    },
 
    {
+     'id' : 23,
      'pertanyaan' : 'Bagaimana kondisi warga desa ini membangun dan memelihara poskamling lingkungan?',
      'jawaban' : [
        {'text' : 'warga membangun dan memelihara poskamling di setiap RT', 'score' : 5},
@@ -279,6 +302,7 @@ class QNA {
    },
 
    {
+     'id' : 24,
      'pertanyaan' : 'Bagaimana Partisipasi warga mengadakan ronda bergilir siskamling?',
      'jawaban' : [
        {'text' : 'semua warga berpartisipasi mengadakan ronda siskamling dan terjadwal dengan baik', 'score' : 5},
@@ -291,6 +315,7 @@ class QNA {
    },
 
    {
+     'id' : 25,
      'pertanyaan' : 'Bagaimana Tingkat kriminalitas yang terjadi di Desa setahun belakangan ini?',
      'jawaban' : [
        {'text' : 'tidak pernah ada kriminalitas di Desa selama 1 tahun terakhir', 'score' : 5},
@@ -303,6 +328,7 @@ class QNA {
    },
 
    {
+     'id' : 26,
      'pertanyaan' : 'Bagaimana Tingkat konflik (akibat kesenjangan sosial, ekonomi, agama, pemilu) yang terjadi di Desa ini setahun belakangan?',
      'jawaban' : [
        {'text' : 'tidak pernah terjadi konflik di Desa selama 1 tahun terakhir', 'score' : 5},
@@ -315,6 +341,7 @@ class QNA {
    },
 
    {
+     'id' : 27,
      'pertanyaan' : 'Bagaimana upaya penyelesaian konflik yang terjadi didesa ini?',
      'jawaban' : [
        {'text' : 'terdapat lembaga atau forum musyawarah penyelesaian konflik di Desa, yang terdiri dari berbagai elemen masyarakat Desa', 'score' : 5},
@@ -327,6 +354,7 @@ class QNA {
    },
 
    {
+     'id' : 28,
      'pertanyaan' : 'Bagaimana kondisi akses jalan dan jarak akses ke Sekolah Luar Biasa terdekat?',
      'jawaban' : [
        {'text' : 'semua warga yang membutuhkan memiliki akses ke sekolah luar biasa', 'score' : 5},
@@ -339,6 +367,7 @@ class QNA {
    },
 
    {
+     'id' : 29,
      'pertanyaan' : 'Apakah di desa ini terdapat Penyandang Kesejahteraan Sosial (Anak Jalanan, Pekerja Seks Komersial dan Pengemis)?',
      'jawaban' : [
        {'text' : 'di Desa tidak terdapat Penyandang Kesejahteraan Sosial (Anak Jalanan, Pekerja Seks Komersial dan Pengemis)', 'score' : 5},
@@ -351,6 +380,7 @@ class QNA {
    },
 
    {
+     'id' : 30,
      'pertanyaan' : 'Apakah di desa ini terdapat Penduduk yang mati bunuh diri tiga tahun belakangan ini?',
      'jawaban' : [
        {'text' : 'tidak pernah terjadi kasus bunuh diri di Desa selama 3 tahun terakhir', 'score' : 5},
@@ -363,6 +393,7 @@ class QNA {
    },
 
    {
+     'id' : 31,
      'pertanyaan' : 'Apakah mayoritas penduduk desa ini memiliki sumber air minum yang layak?',
      'jawaban' : [
        {'text' : 'seluruh warga mendapatkan sumber air minum dari PDAM atau sumber lain berbayar, dan pasokannya dapat memenuhi kebutuhan', 'score' : 5},
@@ -375,6 +406,7 @@ class QNA {
    },
 
    {
+     'id' : 32,
      'pertanyaan' : 'Bagaimana akses penduduk desa ini untuk memiliki air untuk mandi dan mencuci?',
      'jawaban' : [
        {'text' : 'seluruh warga memiliki air untuk mandi dan mencuci yang layak dan bersih', 'score' : 5},
@@ -387,6 +419,7 @@ class QNA {
    },
 
    {
+     'id' : 33,
      'pertanyaan' : 'Apakah mayoritas penduduk desa ini memiliki Jamban (wc) dan septik tank?',
      'jawaban' : [
        {'text' : 'seluruh penduduk Desa memiliki jamban di dalam rumah dan mencerminkan PHBS', 'score' : 5},
@@ -399,6 +432,7 @@ class QNA {
    },
 
    {
+     'id' : 34,
      'pertanyaan' : 'Apakah di penduduk atau keluarga di desa ini memiliki tempat pembuangan sampah rumah tangga?',
      'jawaban' : [
        {'text' : 'seluruh penduduk memiliki tempat pembuangan sampah, dan dapat memisahkan sampah organik, an organik dan B3', 'score' : 5},
@@ -411,6 +445,7 @@ class QNA {
    },
 
    {
+     'id' : 35,
      'pertanyaan' : 'Berapa jumlah keluarga yang telah memiliki aliran listrik di desa ini?',
      'jawaban' : [
        {'text' : 'seluruh rumah warga telah dialiri listrik', 'score' : 5},
@@ -423,6 +458,7 @@ class QNA {
    },
 
    {
+     'id' : 36,
      'pertanyaan' : 'Apakah Penduduk desa ini rta-rata memiliki telepon selular dan memperoleh sinyal seluler yang kuat?',
      'jawaban' : [
        {'text' : 'seluruh penduduk memiliki telepon seluler dan memperoleh sinyal yang kuat', 'score' : 5},
@@ -435,6 +471,7 @@ class QNA {
    },
 
    {
+     'id' : 37,
      'pertanyaan' : 'Apakah penduduk di desa ini bisa menangkap siaran televisi lokal, nasional dan asing?',
      'jawaban' : [
        {'text' : 'seluruh warga dapat menikmati siaran TV lokal, nasional, dan asing di rumah masing-masing', 'score' : 5},
@@ -447,6 +484,7 @@ class QNA {
    },
 
    {
+     'id' : 38,
      'pertanyaan' : 'Bagaimana kondisi akses internet penduduk di desa ini?',
      'jawaban' : [
        {'text' : 'seluruh warga memiliki akses internet gratis yang disediakan oleh Desa atau pihak ketiga lainnya', 'score' : 5},
@@ -459,6 +497,7 @@ class QNA {
    },
 
    {
+     'id' : 39,
      'pertanyaan' : 'Bagaimana jenis kegiatan ekonomi penduduk (pertanian, nelayan, perdagangan, jasa,buruh, pegawai, industri,dll) di desa ini?',
      'jawaban' : [
        {'text' : 'terdapat lebih dari 1 jenis kegiatan ekonomi penduduk', 'score' : 5},
@@ -471,6 +510,7 @@ class QNA {
    },
 
    {
+     'id' : 40,
      'pertanyaan' : 'Bagaimana akses penduduk ke pusat perdagangan (pertokoan, pasar permanen dan semi permanen) di desa ini?',
      'jawaban' : [
        {'text' : 'seluruh penduduk memiliki akses yang mudah ke pusat perdagangan', 'score' : 5},
@@ -483,6 +523,7 @@ class QNA {
    },
 
    {
+     'id' : 41,
      'pertanyaan' : 'Apakah terdapat sektor perdagangan dekat permukiman di desa ini (spt warung dan minimarket)?',
      'jawaban' : [
        {'text' : 'terdapat berbagai sektor perdagangan (warung, mini market) di pemukiman penduduk', 'score' : 5},
@@ -495,6 +536,7 @@ class QNA {
    },
 
    {
+     'id' : 42,
      'pertanyaan' : 'Apakah terdapat usaha kedai makanan, restoran, hotel dan penginapan di desa ini?',
      'jawaban' : [
        {'text' : 'di Desa terdapat beberapa usaha kedai makanan, restoran, hotel dan penginapan yang layak', 'score' : 5},
@@ -507,6 +549,7 @@ class QNA {
    },
 
    {
+     'id' : 43,
      'pertanyaan' : 'Apakah terdapat kantor pos dan jasa logistik di desa ini?',
      'jawaban' : [
        {'text' : 'di Desa terdapat kantor pos dan jasa logistik yang beroperasi setiap hari', 'score' : 5},
@@ -519,6 +562,7 @@ class QNA {
    },
 
    {
+     'id' : 44,
      'pertanyaan' : 'Apakah tersedianya lembaga perbankan umum (Pemerintah dan Swasta) di desa ini?',
      'jawaban' : [
        {'text' : 'di Desa terdapat beberapa lembaga perbankan baik milik pemerintah maupun swasta', 'score' : 5},
@@ -531,6 +575,7 @@ class QNA {
    },
 
    {
+     'id' : 45,
      'pertanyaan' : 'Apakah di desa ini Tersedia BPR (bank perkreditan rakyat)?',
      'jawaban' : [
        {'text' : 'di Desa terdapat lebih dari 2 BPR yang dapat dimanfaatkan oleh seluruh masyarakat Desa', 'score' : 5},
@@ -543,6 +588,7 @@ class QNA {
    },
 
    {
+     'id' : 46,
      'pertanyaan' : 'Bgaimana akses penduduk ke penyedia kredit atau perbankan di desa ini?',
      'jawaban' : [
        {'text' : 'seluruh penduduk memiliki akses ke kredit dengan bunga yang sangat ringan', 'score' : 5},
@@ -555,6 +601,7 @@ class QNA {
    },
 
    {
+     'id' : 47,
      'pertanyaan' : 'Apakah di desa ini Tersedia lembaga ekonomi rakyat (kud, bumdes)?',
      'jawaban' : [
        {'text' : 'di Desa tersedia 1 lembaga ekonomi rakyat seperti koperasi atau bumdes, yang beroperasi secara aktif dan melayani seluruh masyarakat Desa', 'score' : 5},
@@ -567,6 +614,7 @@ class QNA {
    },
 
    {
+     'id' : 48,
      'pertanyaan' : 'Apakah di desa ini terdapat usaha moda transportasi umum (Transportasi Angkutan Umum, trayek reguler dan jam operasi Angkutan Umum, ojek pangkalan, ojek online)?',
      'jawaban' : [
        {'text' : 'di Desa terdapat moda transportasi umum yang secara resmi melayani trayek tersebut dan beroperasi 24 jam', 'score' : 5},
@@ -579,6 +627,7 @@ class QNA {
    },
 
    {
+     'id' : 49,
      'pertanyaan' : 'Bagaimana kondisi Jalan yang dapat dilalui oleh kendaraan bermotor rodadua, roda empat atau lebih (sepanjang tahun kecuali musim hujan, kecuali saat tertentu)?',
      'jawaban' : [
        {'text' : 'jalan yang ada di Desa dalam kondisi baik dan dapat dilalui oleh kendaraan bermotor roda empat atau lebih sepanjang tahun', 'score' : 5},
@@ -591,6 +640,7 @@ class QNA {
    },
 
    {
+     'id' : 50,
      'pertanyaan' : 'Bagaimana Kualitas Jalan Desa (Jalan terluas di desa dengan aspal, kerikil, dan tanah)?',
      'jawaban' : [
        {'text' : 'jalan terluas di Desa telah diaspal dengan baik dan dengan lebar badan jalan sangat layak', 'score' : 5},
@@ -603,6 +653,7 @@ class QNA {
    },
 
    {
+     'id' : 51,
      'pertanyaan' : 'Apakah ada atau tidak adanya pencemaran air, tanah dan udara di desa ini?',
      'jawaban' : [
        {'text' : 'di Desa tidak terjadi pencemaran air, tanah, dan udara dalam kurun waktu 1 tahun terakhir', 'score' : 5},
@@ -615,6 +666,7 @@ class QNA {
    },
 
    {
+     'id' : 52,
      'pertanyaan' : 'Apakah di desa ini terdapat sungai yg terkena limbah?',
      'jawaban' : [
        {'text' : 'sungai yang mengalir di Desa bebas dari limbah rumah tangga dan industri', 'score' : 5},
@@ -627,6 +679,7 @@ class QNA {
    },
 
    {
+     'id' : 53,
      'pertanyaan' : 'Apakah di desa ini pernah kejadian Bencana Alam (banjir, tanah longsong, kebakaran hutan) setahun tertakhir?',
      'jawaban' : [
        {'text' : 'Desa bebas dari bencana banjir, tanah longsor, dan kebakaran hutan dalam waktu 1 tahun terakhir', 'score' : 5},
@@ -639,6 +692,7 @@ class QNA {
    },
 
     {
+      'id' : 54,
       'pertanyaan' : 'Bagaimana Upaya/Tindakan terhadap potensi bencana alam (Tanggap bencana, jalur evakuasi, peringatan dini dan ketersediaan) di desa ini?',
       'jawaban' : [
         {'text' : 'Desa memiliki upaya yang sistematis terhadap potensi bencana (Mis : melakukan reboisasi, dll)', 'score' : 5},

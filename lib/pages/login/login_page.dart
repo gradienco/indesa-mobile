@@ -49,7 +49,12 @@ class _LoginPageState extends State<LoginPage> {
     bloc.loginSink.add(Status.loading);
     GraphQLClient _client = _config.clientToQuery();
     try {
-      var result = await _client.mutate(loginOptions(_emailController.text, _passwordController.text));
+      var result = await _client.mutate(
+          loginOptions(
+              _emailController.text,
+              _passwordController.text
+          )
+      );
       var data = result.data['login'];
       _dataUser.clear();
       _dataUser.addAll(data);
@@ -73,7 +78,6 @@ class _LoginPageState extends State<LoginPage> {
       } else {
         print('insert data failed');
       }
-     // bloc.loginSink.add(Status.success);
     } catch (error) {
       _notValidUser = "email atau password salah!";
       bloc.loginSink.add(Status.initial);

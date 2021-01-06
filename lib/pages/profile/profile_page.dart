@@ -42,15 +42,6 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       body: ListView(
         children: [
-
-          // Padding(
-          //   padding: const EdgeInsets.only(top: 50, bottom: 15),
-          //   child: CircleImage(
-          //     width: 110,
-          //     image: AssetImage("$imageAssetProfile/profile.jpg"),
-          //   ),
-          // ),
-
           Padding(
             padding: EdgeInsets.only(top: 56, bottom: 20),
             child: Center(
@@ -64,13 +55,6 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
           ),
-
-          // Padding(
-          //   padding: const EdgeInsets.all(10.0),
-          //   child: Label(
-          //     totalSurvey: "10",
-          //   ),
-          // ),
 
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),

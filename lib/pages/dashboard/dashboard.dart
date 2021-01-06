@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:indesa_beta/constant/constant.dart';
 import 'package:indesa_beta/pages/help/help_page.dart';
 import 'package:indesa_beta/pages/history/history_page.dart';
-import 'package:indesa_beta/pages/history_soal/history_soal_page.dart';
 import 'package:indesa_beta/pages/home/home_page.dart';
 import 'package:indesa_beta/pages/index/index_page.dart';
 import 'package:indesa_beta/pages/profile/profile_page.dart';

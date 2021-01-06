@@ -43,3 +43,20 @@ MutationOptions addSurveyOptions(int userId, int desaId, int tipe, double iSos, 
       documentNode: gql(mutation)
   );
 }
+
+MutationOptions addAnswerOptions(int surveyId, int pertanyaanId, int nilai){
+  var mutation = """
+  mutation{
+  addAnswer(
+  IDSurvey: $surveyId 
+  IDPertanyaan: $pertanyaanId 
+  nilai:$nilai)
+  {
+    id
+  }
+}
+""";
+  return MutationOptions(
+      documentNode: gql(mutation)
+  );
+}

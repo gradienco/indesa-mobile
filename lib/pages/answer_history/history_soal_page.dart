@@ -6,15 +6,15 @@ import 'index_ekonomi.dart';
 import 'index_lingkungan.dart';
 import 'index_sosial.dart';
 
-class HistorySoalPage extends StatefulWidget {
+class AnswerHistoryPage extends StatefulWidget {
   final List<Answer> answers;
-  HistorySoalPage(this.answers);
+  AnswerHistoryPage(this.answers);
 
   @override
-  _HistorySoalPageState createState() => _HistorySoalPageState();
+  _AnswerHistoryPageState createState() => _AnswerHistoryPageState();
 }
 
-class _HistorySoalPageState extends State<HistorySoalPage> with SingleTickerProviderStateMixin {
+class _AnswerHistoryPageState extends State<AnswerHistoryPage> with SingleTickerProviderStateMixin {
 
   TabController controller;
 
@@ -34,7 +34,7 @@ class _HistorySoalPageState extends State<HistorySoalPage> with SingleTickerProv
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Riwayat Soal'),
+          title: Text('Riwayat Jawaban'),
           backgroundColor: cDarkGreen,
           bottom: TabBar(
               controller: controller,

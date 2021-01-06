@@ -27,6 +27,10 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void _showToastComingSoon(BuildContext context){
+    showToast("Coming soon", context);
+  }
+
   @override
   void initState() {
     _getUserData();
@@ -38,7 +42,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: ListView(
         children: [
-
           Padding(
             padding: EdgeInsets.only(top: 56, bottom: 7, left: deviceWidth() * 0.06),
             child: Text(
@@ -97,7 +100,9 @@ class _HomePageState extends State<HomePage> {
             assetImage: "$imageAssetMenu/ipd.png",
             deviceHeight: deviceHeight(),
             deviceWidth: deviceWidth(),
-            onTap: (){},
+            onTap: (){
+              _showToastComingSoon(context);
+            },
           ),
 
           Padding(
@@ -109,7 +114,9 @@ class _HomePageState extends State<HomePage> {
             assetImage: "$imageAssetMenu/pd.png",
             deviceHeight: deviceHeight(),
             deviceWidth: deviceWidth(),
-            onTap: (){},
+            onTap: (){
+              _showToastComingSoon(context);
+            },
           ),
 
           Padding(

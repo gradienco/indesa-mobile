@@ -6,19 +6,12 @@ import 'package:indesa_beta/models/models.dart';
 class HistoryQuiz extends StatelessWidget {
 
   final int questionIndex;
-  // final Function onChangeValue;
   final QNA qna;
   final List<Answer> answers;
-  // final int selectedValue;
-  // final int defaultValue;
-  //
   HistoryQuiz({
     @required this.questionIndex,
-  //   @required this.onChangeValue,
     @required this.qna,
     @required this.answers,
-  //   @required this.defaultValue,
-  //   @required this.selectedValue
     });
 
   int _getAnswerIndex(int value){

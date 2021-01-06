@@ -23,6 +23,7 @@ class _ResultPageState extends State<ResultPage> {
   int userId = 0,tipe=0;
   GraphQlConfig _config = GraphQlConfig();
   bool _isBusy = false;
+  int a = 0;
 
   void _getUserData(){
     final Future<Database> dbFuture = _dbHelper.initializeDatabase();
@@ -110,6 +111,16 @@ class _ResultPageState extends State<ResultPage> {
             _isBusy = false;
           });
         }
+
+        for(int i = 0; i<widget.answers.length-1; i++){
+          var result = await _client.mutate(addAnswerOptions(data['id'], widget.answers[i].id, widget.answers[i].value));
+          var dataAddAnswer = result.data['addAnswer'];
+          print(dataAddAnswer['id']);
+          setState(() {
+            a++;
+          });
+        }
+
         if(data != null){
           showToast("Data Survey berhasil disubmit", context);
           Navigator.of(context).pushReplacementNamed(RouterGenerator.routeDashboard);
@@ -254,8 +265,26 @@ class _ResultPageState extends State<ResultPage> {
           )
         ],
       ),
-    ) : Center(
-      child: CircularProgressIndicator(),
+    ) : Stack(
+        children: [
+          Align(
+            alignment: Alignment.center,
+            child: CircularProgressIndicator(),
+          ),
+
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: EdgeInsets.only(bottom: 60.0),
+              child: Text(
+                  "Menyimpan jawaban $a/${widget.answers.length-1}",
+                style: TextStyle(
+                  fontSize: setFontSize(50)
+                ),
+              ),
+            ),
+          )
+        ],
     );
   }
 }
