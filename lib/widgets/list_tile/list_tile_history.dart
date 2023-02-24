@@ -4,16 +4,15 @@ import 'package:indesa_beta/constant/constant.dart';
 class ListTileHistory extends StatelessWidget {
   String desa, kategori, poinIDM;
   Function onTap;
-  ListTileHistory({
-    @required this.poinIDM,
-    @required this.kategori,
-    @required this.desa,
-    @required this.onTap
-  });
+  ListTileHistory(
+      {@required this.poinIDM,
+      @required this.kategori,
+      @required this.desa,
+      @required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
       child: Container(
         child: Column(
@@ -30,17 +29,14 @@ class ListTileHistory extends StatelessWidget {
                       style: TextStyle(
                           color: cDarkGreen,
                           fontSize: setFontSize(45),
-                        fontWeight: FontWeight.bold
-                      ),
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
-
                 Flexible(
                   flex: 2,
                   child: Container(),
                 ),
-
                 Flexible(
                   flex: 2,
                   child: Align(
@@ -50,8 +46,8 @@ class ListTileHistory extends StatelessWidget {
                         Text(
                           poinIDM,
                           style: TextStyle(
-                              fontSize: setFontSize(40),
-                              color: cDarkGreen,
+                            fontSize: setFontSize(40),
+                            color: cDarkGreen,
                           ),
                         ),
                         Text(
@@ -60,8 +56,7 @@ class ListTileHistory extends StatelessWidget {
                           style: TextStyle(
                               fontSize: setFontSize(43),
                               color: cDarkGreen,
-                            fontWeight: FontWeight.bold
-                          ),
+                              fontWeight: FontWeight.bold),
                         )
                       ],
                     ),
@@ -69,7 +64,6 @@ class ListTileHistory extends StatelessWidget {
                 ),
               ],
             ),
-
             Padding(
               padding: const EdgeInsets.only(bottom: 6),
               child: Divider(),

@@ -1,21 +1,13 @@
 import 'dart:convert';
 import 'package:indesa_beta/models/models.dart';
 
-class Survey{
+class Survey {
   int _userId, _desaId, _surveyId;
   double _iks, _ike, _ikl, _idm;
   List<Answer> _answers;
 
-  Survey(
-      this._userId,
-      this._desaId,
-      this._surveyId,
-      this._iks,
-      this._ike,
-      this._ikl,
-      this._idm,
-      this._answers
-      );
+  Survey(this._userId, this._desaId, this._surveyId, this._iks, this._ike,
+      this._ikl, this._idm, this._answers);
 
   int get userId => _userId;
   int get desaId => _desaId;
@@ -33,7 +25,7 @@ class Survey{
     };
   }
 
-  Map<String, dynamic> toMap(){
+  Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();
     map['survey_id'] = _surveyId;
     map['user_id'] = _userId;
@@ -45,5 +37,4 @@ class Survey{
     map['answer'] = jsonEncode(this.toJson());
     return map;
   }
-
 }

@@ -11,15 +11,14 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-
   DatabaseHelper _dbHelper = DatabaseHelper();
-  String _nama ="", _username="", _email="", _noHp="", _nik="";
+  String _nama = '', _username = '', _email = '', _noHp = '', _nik = '';
 
-  void _getUserData(){
+  void _getUserData() {
     final Future<Database> dbFuture = _dbHelper.initializeDatabase();
-    dbFuture.then((database){
+    dbFuture.then((database) {
       Future<Map<String, dynamic>> userData = _dbHelper.getUser();
-      userData.then((data){
+      userData.then((data) {
         setState(() {
           _nama = data['nama_lengkap'];
           _username = data['username'];
@@ -50,12 +49,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: setFontSize(65),
-                    color: cDarkGreen
-                ),
+                    color: cDarkGreen),
               ),
             ),
           ),
-
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Divider(
@@ -63,35 +60,17 @@ class _ProfilePageState extends State<ProfilePage> {
               thickness: 1,
             ),
           ),
-
           ListTileProfile(
               icon: "user",
               title: "Username",
               subtitle: _username,
-              onTap: (){}
-          ),
-
+              onTap: () {}),
           ListTileProfile(
-              icon: "email",
-              title: "Email",
-              subtitle: _email,
-              onTap: (){}
-          ),
-
+              icon: "email", title: "Email", subtitle: _email, onTap: () {}),
           ListTileProfile(
-              icon: "phone",
-              title: "No. Hp",
-              subtitle: _noHp,
-              onTap: (){}
-          ),
-
+              icon: "phone", title: "No. Hp", subtitle: _noHp, onTap: () {}),
           ListTileProfile(
-              icon: "nik",
-              title: "NIK",
-              subtitle: _nik,
-              onTap: (){}
-          ),
-
+              icon: "nik", title: "NIK", subtitle: _nik, onTap: () {}),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Divider(
@@ -99,13 +78,13 @@ class _ProfilePageState extends State<ProfilePage> {
               thickness: 1,
             ),
           ),
-
           ListTile(
-            onTap: () async{
+            onTap: () async {
               var result = await _dbHelper.deleteUserData();
-              if(result != 0){
+              if (result != 0) {
                 showToast("Logout berhasil", context);
-                Navigator.pushNamedAndRemoveUntil(context, RouterGenerator.routeLogin, (route) => false);
+                Navigator.pushNamedAndRemoveUntil(
+                    context, RouterGenerator.routeLogin, (route) => false);
               } else {
                 showToast("Logout gagal", context);
               }
@@ -115,20 +94,16 @@ class _ProfilePageState extends State<ProfilePage> {
               width: 35,
               height: 35,
             ),
-            title: Text("Keluar",
-              style: TextStyle(
-                  color: Colors.red,
-                  fontSize: setFontSize(50)
-              ),),
+            title: Text(
+              "Keluar",
+              style: TextStyle(color: Colors.red, fontSize: setFontSize(50)),
+            ),
           ),
-
           Padding(
             padding: EdgeInsets.all(10),
           )
-
         ],
       ),
     );
   }
 }
-

@@ -18,13 +18,12 @@ String imageAssetProfile = "$imageAsset/profile";
 String imageAssetCategory = "$imageAsset/category";
 String imageAssetMenu = "$imageAsset/menu";
 
-
 /// -----------------------------------
 /// Font and size scaling screen utils
 /// -----------------------------------
 /// Initialize screen util
-void setupScreenUtil(BuildContext context)
-=> ScreenUtil.init(context, allowFontScaling: true);
+void setupScreenUtil(BuildContext context) =>
+    ScreenUtil.init(context, allowFontScaling: true);
 
 /// ------------
 /// Device Size
@@ -33,7 +32,8 @@ double deviceWidth() => ScreenUtil.screenWidth;
 double deviceHeight() => ScreenUtil.screenHeight;
 
 /// Setting fontsize
-double setFontSize(double size)  => ScreenUtil().setSp(size, allowFontScalingSelf: true);
+double setFontSize(double size) =>
+    ScreenUtil().setSp(size, allowFontScalingSelf: true);
 
 /// -----------------------------------
 /// Constant Base Text Styling
@@ -47,6 +47,3 @@ TextStyle mainTextStyle = TextStyle(
   fontSize: setFontSize(80),
   color: Colors.black,
 );
-
-
-

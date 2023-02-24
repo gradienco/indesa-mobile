@@ -16,9 +16,8 @@ class ListDesaPage extends StatefulWidget {
 }
 
 class _ListDesaPageState extends State<ListDesaPage> {
-
   GraphQlConfig _config = GraphQlConfig();
-  List<dynamic> _listDesa;
+  List<dynamic> _listDesa = [];
   var bloc = DesaBloc();
 
   @override
@@ -34,11 +33,8 @@ class _ListDesaPageState extends State<ListDesaPage> {
     bloc.sink.add(Status.loading);
     GraphQLClient _client = _config.clientToQuery();
     try {
-      var queryResult = await _client.query(
-          QueryOptions(
-              documentNode: gql(getDesa(widget.idKecamatan))
-          )
-      );
+      var queryResult = await _client
+          .query(QueryOptions(documentNode: gql(getDesa(widget.idKecamatan))));
       _listDesa.clear();
       _listDesa.addAll(queryResult.data['desa']);
       bloc.sink.add(Status.success);
@@ -51,17 +47,15 @@ class _ListDesaPageState extends State<ListDesaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: cDarkGreen
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: cDarkGreen),
+          title: Text(
+            "Pilih Desa",
+            style: TextStyle(color: cDarkGreen),
+          ),
+          backgroundColor: Colors.white,
+          elevation: 3,
         ),
-        title: Text("Pilih Desa",
-          style: TextStyle(
-              color: cDarkGreen
-          ),),
-        backgroundColor: Colors.white,
-        elevation: 3,
-      ),
         body: StreamBuilder(
           stream: bloc.stream,
           initialData: Status.loading,
@@ -80,7 +74,7 @@ class _ListDesaPageState extends State<ListDesaPage> {
                     Text('Gagal memuat data'),
                     RaisedButton(
                       child: Text('ulangi'),
-                      onPressed: (){
+                      onPressed: () {
                         _loadAllKecamatan();
                       },
                     )
@@ -95,15 +89,14 @@ class _ListDesaPageState extends State<ListDesaPage> {
                     int idDesa = item['id'];
                     return ListTileLocation(
                       location: '${item['namaDesa']}',
-                      onTap: (){
+                      onTap: () {
                         Navigator.pop(context);
                         Navigator.pop(context);
                         Navigator.pop(context);
                         Navigator.pop(context);
                         Navigator.of(context).pushReplacementNamed(
                             RouterGenerator.routeSurvey,
-                            arguments: idDesa
-                        );
+                            arguments: idDesa);
                       },
                     );
                   });
@@ -111,7 +104,6 @@ class _ListDesaPageState extends State<ListDesaPage> {
               return Container();
             }
           },
-        )
-    );
+        ));
   }
 }

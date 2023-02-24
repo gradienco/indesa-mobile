@@ -6,10 +6,10 @@ import 'package:mockito/mockito.dart';
 
 class MockDatabaseHelper extends Mock implements DatabaseHelper {}
 
-void main(){
+void main() {
   final dbHelper = MockDatabaseHelper();
 
-  test('database dapat di inisialisasi', (){
+  test('inisialisasi database', () {
     dbHelper.initializeDatabase();
     verify(dbHelper.initializeDatabase());
 
@@ -22,31 +22,30 @@ void main(){
   test("memasukan data pengguna ke database", () async {
     final user = User(
         1,
-        'user@email.com',
+        'user@indesa.com',
         'username',
-        'fullname',
-        '123',
-        '456',
+        'full name',
+        '1810032105970005',
+        '1999040532105001',
         '08123456789',
         1001,
         'admin',
         'token',
-        123123
-    );
+        3509284123);
 
-    when(dbHelper.insertUserData(user)).thenAnswer((_)=>Future.value(1));
+    when(dbHelper.insertUserData(user)).thenAnswer((_) => Future.value(1));
     expect(await dbHelper.insertUserData(user), 1);
   });
 
   test("mengambil data pengguna dari database", () async {
-    Map<String, dynamic> mapUser(){
+    Map<String, dynamic> mapUser() {
       var map = Map<String, dynamic>();
       map['user_id'] = 1;
-      map['email'] = 'johndoe@mail.com';
-      map['username'] = 'johndoe';
-      map['nama_lengkap'] = 'John Doe';
-      map['nik'] = '123';
-      map['nip'] = '456';
+      map['email'] = 'user@indesa.com';
+      map['username'] = 'username';
+      map['nama_lengkap'] = 'full name';
+      map['nik'] = '1810032105970005';
+      map['nip'] = '1999040532105001';
       map['no_hp'] = '08123456789';
       map['role'] = 1001;
       map['nama_role'] = 'admin';
@@ -55,55 +54,38 @@ void main(){
       return map;
     }
 
-    when(dbHelper.getUser()).thenAnswer((_)=>Future.value(
-      mapUser()
-    ));
+    when(dbHelper.getUser()).thenAnswer((_) => Future.value(mapUser()));
     var data = await dbHelper.getUser();
     expect(data, mapUser());
-    expect(data['nama_lengkap'], 'John Doe');
+    expect(data['email'], 'user@indesa.com');
   });
 
-  test("mengembalikan true jika terdapat token dan false jika tidak ada token", () async {
-    when(dbHelper.checkToken()).thenAnswer((_)=>Future.value("Bearer token"));
-    bool tokenIsNotEmpty(String token){
-      if (token.isNotEmpty){
+  test("mengembalikan true jika terdapat token dan false jika tidak ada token",
+      () async {
+    when(dbHelper.checkToken()).thenAnswer((_) => Future.value("Bearer token"));
+    bool tokenIsNotEmpty(String token) {
+      if (token.isNotEmpty) {
         return true;
       } else {
         return false;
       }
     }
+
     expect(tokenIsNotEmpty(await dbHelper.checkToken()), true);
 
-    when(dbHelper.checkToken()).thenAnswer((_)=>Future.value(""));
+    when(dbHelper.checkToken()).thenAnswer((_) => Future.value(""));
     expect(tokenIsNotEmpty(await dbHelper.checkToken()), false);
   });
 
-  test("menghapus data pengguna yang ada di database", () async {
-    when(dbHelper.deleteUserData()).thenAnswer((_)=>Future.value(1));
-    expect(await dbHelper.deleteUserData(), 1);
-  });
-
   test("memasukan data survei ke database", () async {
-    Survey survey = Survey(
-      1,
-      181004121,
-      12,
-      0.5,
-      0.6,
-      0.7,
-      0.8,
-      [
-        Answer(1,3,5),
-        Answer(2,2,3),
-        Answer(3,5,2)
-      ]
-    );
-    when(dbHelper.insertSurveyData(survey)).thenAnswer((_)=>Future.value(1));
+    Survey survey = Survey(1, 181004121, 12, 0.5, 0.6, 0.7, 0.8,
+        [Answer(1, 3, 5), Answer(2, 2, 3), Answer(3, 5, 2)], "Pujodadi");
+    when(dbHelper.insertSurveyData(survey)).thenAnswer((_) => Future.value(1));
     expect(await dbHelper.insertSurveyData(survey), 1);
   });
 
   test("mengambil riwayat data survei dari database", () async {
-    Map<String, dynamic> mapSurvey(){
+    Map<String, dynamic> mapSurvey() {
       var map = Map<String, dynamic>();
       map['survey_id'] = 12;
       map['user_id'] = 1;
@@ -127,12 +109,15 @@ void main(){
       ''';
       return map;
     }
-    when(dbHelper.getUser()).thenAnswer((_)=>Future.value(
-        mapSurvey()
-    ));
+
+    when(dbHelper.getUser()).thenAnswer((_) => Future.value(mapSurvey()));
     var data = await dbHelper.getUser();
     expect(data, mapSurvey());
     expect(data['idm'], 0.8);
   });
 
+  test("menghapus data pengguna yang ada di database", () async {
+    when(dbHelper.deleteUserData()).thenAnswer((_) => Future.value(1));
+    expect(await dbHelper.deleteUserData(), 1);
+  });
 }

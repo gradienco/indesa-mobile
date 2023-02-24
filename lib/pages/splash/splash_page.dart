@@ -50,6 +50,19 @@ class _SplashState extends State<Splash> {
                 ),
               ),
             ),
+
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: EdgeInsets.only(bottom: deviceHeight()*0.1),
+                child: Text("1.0.0",
+                style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: setFontSize(49)
+                ),
+                ),
+              ),
+            )
           ],
         ),
       ),

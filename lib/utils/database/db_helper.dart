@@ -3,7 +3,7 @@ import 'package:indesa_beta/models/models.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
-class DatabaseHelper{
+class DatabaseHelper {
   static DatabaseHelper _databaseHelper;
   static Database _database;
 
@@ -34,24 +34,23 @@ class DatabaseHelper{
 
   DatabaseHelper._createInstance();
 
-  factory DatabaseHelper(){
-
-    if(_databaseHelper == null){
+  factory DatabaseHelper() {
+    if (_databaseHelper == null) {
       _databaseHelper = DatabaseHelper._createInstance();
     }
 
     return _databaseHelper;
   }
 
-  Future<Database> get database async{
-    if (_database == null){
+  Future<Database> get database async {
+    if (_database == null) {
       _database = await initializeDatabase();
     }
 
     return _database;
   }
 
-  Future<Database> initializeDatabase() async{
+  Future<Database> initializeDatabase() async {
     Directory directory = await getApplicationDocumentsDirectory();
     String path = directory.path + 'indesa.db';
 
@@ -59,7 +58,7 @@ class DatabaseHelper{
     return initDB;
   }
 
-  void _createDb(Database db, int newVersion) async{
+  void _createDb(Database db, int newVersion) async {
     await db.execute('''
       CREATE TABLE $surveyTable(
         $colSurveyId INTEGER PRIMARY KEY, 
@@ -96,7 +95,7 @@ class DatabaseHelper{
   }
 
   //fetch data user
-  Future<Map<String, dynamic>>getUser() async {
+  Future<Map<String, dynamic>> getUser() async {
     Database db = await this.database;
     //  var result = await db.rawQuery('SELECT * FROM $noteTable order by $colPriority ASC');
     var result = await db.query(userTable);
@@ -104,7 +103,7 @@ class DatabaseHelper{
     return userData;
   }
 
-  Future<String>checkToken() async {
+  Future<String> checkToken() async {
     Database db = await this.database;
     //  var result = await db.rawQuery('SELECT * FROM $noteTable order by $colPriority ASC');
     var result = await db.query(userTable);
@@ -115,7 +114,7 @@ class DatabaseHelper{
   //delete data user
   Future<int> deleteUserData() async {
     Database db = await this.database;
-   // var result = await db.rawDelete('DELETE FROM $noteTable WHERE $colId = $id');
+    // var result = await db.rawDelete('DELETE FROM $noteTable WHERE $colId = $id');
     var result = await db.delete(userTable);
     return result;
   }
@@ -128,12 +127,11 @@ class DatabaseHelper{
   }
 
   //fetch data survey
-  Future<Map<String, dynamic>>getSurveyData(int surveyId) async {
+  Future<Map<String, dynamic>> getSurveyData(int surveyId) async {
     Database db = await this.database;
     //  var result = await db.rawQuery('SELECT * FROM $noteTable order by $colPriority ASC');
     var result = await db.query(surveyTable, where: "$colSurveyId = $surveyId");
     var surveyData = result[0];
     return surveyData;
   }
-
 }

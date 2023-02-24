@@ -40,7 +40,7 @@ String getDesa(int idKecamatan) {
 }""");
 }
 
-QueryOptions getSurvey(){
+QueryOptions getSurvey() {
   var query = """
   {
   survey{
@@ -57,8 +57,5 @@ QueryOptions getSurvey(){
   }
 }
 """;
-  return QueryOptions(
-    documentNode: gql(query)
-  );
+  return QueryOptions(documentNode: gql(query));
 }
-

@@ -12,7 +12,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  int _selectedTabIndex = 2;
+  int _selectedTabIndex = 0;
 
   void _onNavBarTapped(int index) {
     setState(() {
@@ -23,30 +23,30 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     final _listPage = <Widget>[
-      ProfilePage(),
-      HistoryPage(),
       HomePage(),
-      IndexPage(),
+      HistoryPage(),
+      ProfilePage(),
+      // IndexPage(),
       HelpPage(),
     ];
 
     final _bottomNavBarItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(
-        icon: Icon(Icons.person),
-        title: Text("Akun"),
+        icon: Icon(Icons.home),
+        title: Text("Beranda"),
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.history),
         title: Text("Riwayat"),
       ),
       BottomNavigationBarItem(
-        icon: Icon(Icons.home),
-        title: Text("Beranda"),
+        icon: Icon(Icons.person),
+        title: Text("Akun"),
       ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.dehaze),
-        title: Text("Indeks"),
-      ),
+      // BottomNavigationBarItem(
+      //   icon: Icon(Icons.dehaze),
+      //   title: Text("Indeks"),
+      // ),
       BottomNavigationBarItem(
         icon: Icon(Icons.info),
         title: Text("Bantuan"),

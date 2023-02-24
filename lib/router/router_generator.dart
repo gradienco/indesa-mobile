@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:indesa_beta/animation/fade_transition.dart';
 import 'package:indesa_beta/pages/answer_history/history_soal_page.dart';
 import 'package:indesa_beta/pages/dashboard/dashboard.dart';
+// import 'package:indesa_beta/pages/history/result_history_page.dart';
 import 'package:indesa_beta/pages/location/desa/desa_page.dart';
 import 'package:indesa_beta/pages/location/kabupaten/kabupaten_page.dart';
 import 'package:indesa_beta/pages/location/kecamatan/kecamatan_page.dart';
@@ -12,7 +13,6 @@ import 'package:indesa_beta/pages/splash/splash_page.dart';
 import 'package:indesa_beta/pages/survey/survey_page.dart';
 
 class RouterGenerator {
-
   /// -------------------
   /// ROUTING NAME LIST
   /// -------------------
@@ -35,12 +35,14 @@ class RouterGenerator {
   /// History Quiz Routing
   static const routeHistoryQuiz = "/history_quiz";
 
+  static const routeResultHistory = "/result_history";
+
   /// History Quiz Routing
   // static const routeHistoryQuiz = "/history_quiz";
 
   /// Choose Location Routing
   static const routeProvinsi = "/provinsi";
-  static const routeKabupaten= "/kabupaten";
+  static const routeKabupaten = "/kabupaten";
   static const routeKecamatan = "/kecamatan";
   static const routeDesa = "/desa";
 
@@ -50,7 +52,7 @@ class RouterGenerator {
     final args = settings.arguments;
 
     /// Make conditions to find correct route
-    switch(settings.name) {
+    switch (settings.name) {
       case routeSplash:
         return MaterialPageRoute(builder: (_) => Splash());
       case routeLogin:
@@ -67,8 +69,10 @@ class RouterGenerator {
         return FadeRoute(page: ListKecamatanPage(args));
       case routeDesa:
         return FadeRoute(page: ListDesaPage(args));
-      case routeHistoryQuiz :
+      case routeHistoryQuiz:
         return FadeRoute(page: AnswerHistoryPage(args));
+      // case routeResultHistory:
+      //   return FadeRoute(page: ResultHistoryPage(args));
 
       // case routeResult:
       //   if(args is int) {

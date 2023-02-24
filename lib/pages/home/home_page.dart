@@ -11,15 +11,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   DatabaseHelper _dbHelper = DatabaseHelper();
-  String nama ="";
+  String nama = "";
 
-  void _getUserData(){
+  void _getUserData() {
     final Future<Database> dbFuture = _dbHelper.initializeDatabase();
-    dbFuture.then((database){
+    dbFuture.then((database) {
       Future<Map<String, dynamic>> userData = _dbHelper.getUser();
-      userData.then((data){
+      userData.then((data) {
         setState(() {
           nama = data['nama_lengkap'];
         });
@@ -27,7 +26,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void _showToastComingSoon(BuildContext context){
+  void _showToastComingSoon(BuildContext context) {
     showToast("Coming soon", context);
   }
 
@@ -43,17 +42,16 @@ class _HomePageState extends State<HomePage> {
       body: ListView(
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 56, bottom: 7, left: deviceWidth() * 0.06),
+            padding:
+                EdgeInsets.only(top: 56, bottom: 7, left: deviceWidth() * 0.06),
             child: Text(
               "Selamat Datang,",
               style: TextStyle(
                   color: cDarkGreen,
                   fontSize: setFontSize(55),
-                  fontWeight: FontWeight.bold
-              ),
+                  fontWeight: FontWeight.bold),
             ),
           ),
-
           Padding(
             padding: EdgeInsets.only(left: deviceWidth() * 0.06),
             child: Text(
@@ -61,64 +59,56 @@ class _HomePageState extends State<HomePage> {
               style: TextStyle(
                   color: cDarkGreen,
                   fontSize: setFontSize(60),
-                  fontWeight: FontWeight.bold
-              ),
+                  fontWeight: FontWeight.bold),
             ),
           ),
-
           Container(
-            margin: EdgeInsets.only(left: deviceWidth() * 0.06, right: deviceWidth() * 0.06, top: 35),
+            margin: EdgeInsets.only(
+                left: deviceWidth() * 0.06,
+                right: deviceWidth() * 0.06,
+                top: 35),
             child: Text(
               "Pilih Jenis Survey",
               style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: setFontSize(50)
-              ),
+                  fontWeight: FontWeight.bold, fontSize: setFontSize(50)),
             ),
           ),
-
           Padding(
             padding: EdgeInsets.only(top: 20),
           ),
-
           CardButton(
             title: "INDEKS DESA MEMBANGUN",
             assetImage: "$imageAssetMenu/idm.png",
             deviceHeight: deviceHeight(),
             deviceWidth: deviceWidth(),
-            onTap: (){
+            onTap: () {
               Navigator.pushNamed(context, RouterGenerator.routeProvinsi);
             },
           ),
-
           Padding(
             padding: EdgeInsets.all(10),
           ),
-
           CardButton(
             title: "INDEKS PEMBANGUNAN DESA",
             assetImage: "$imageAssetMenu/ipd.png",
             deviceHeight: deviceHeight(),
             deviceWidth: deviceWidth(),
-            onTap: (){
+            onTap: () {
               _showToastComingSoon(context);
             },
           ),
-
           Padding(
             padding: EdgeInsets.all(10),
           ),
-
           CardButton(
             title: "POTENSI DESA",
             assetImage: "$imageAssetMenu/pd.png",
             deviceHeight: deviceHeight(),
             deviceWidth: deviceWidth(),
-            onTap: (){
+            onTap: () {
               _showToastComingSoon(context);
             },
           ),
-
           Padding(
             padding: EdgeInsets.all(15),
           ),
@@ -127,5 +117,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-

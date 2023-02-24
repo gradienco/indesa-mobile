@@ -13,20 +13,16 @@ class ListProvinsiPage extends StatefulWidget {
 }
 
 class _ListProvinsiPageState extends State<ListProvinsiPage> {
-
   GraphQlConfig _config = GraphQlConfig();
-  List<dynamic> _listProvinsi;
+  List<dynamic> _listProvinsi = [];
   var bloc = ProvinsiBloc();
 
   void _loadAllProvinsi() async {
     bloc.sink.add(Status.loading);
     GraphQLClient _client = _config.clientToQuery();
     try {
-      var queryResult = await _client.query(
-        QueryOptions(
-          documentNode: gql(getProvinsi())
-        )
-      );
+      var queryResult =
+          await _client.query(QueryOptions(documentNode: gql(getProvinsi())));
       _listProvinsi.clear();
       _listProvinsi.addAll(queryResult.data['provinsi']);
       bloc.sink.add(Status.success);
@@ -48,60 +44,59 @@ class _ListProvinsiPageState extends State<ListProvinsiPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(
-            color: cDarkGreen
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: cDarkGreen),
+          title: Text(
+            "Pilih Provinsi",
+            style: TextStyle(color: cDarkGreen),
+          ),
+          backgroundColor: Colors.white,
+          elevation: 3,
         ),
-        title: Text("Pilih Provinsi",
-          style: TextStyle(
-              color: cDarkGreen
-          ),),
-        backgroundColor: Colors.white,
-        elevation: 3,
-      ),
-      body: StreamBuilder(
-        stream: bloc.stream,
-        initialData: Status.loading,
-        builder: (BuildContext context, AsyncSnapshot<Status> snapshot) {
-          var status = snapshot.data;
-          if (status == Status.loading) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (status == Status.failure) {
-            return Align(
-              alignment: Alignment.center,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Gagal memuat data'),
-                  RaisedButton(
-                    child: Text('ulangi'),
-                    onPressed: (){
-                      _loadAllProvinsi();
-                    },
-                  )
-                ],
-              ),
-            );
-          } else if (status == Status.success) {
-            return ListView.builder(
-              itemCount: _listProvinsi.length,
-              itemBuilder: (context, index) {
-                var item = _listProvinsi[index];
-                int idProv = item['id'];
-                return ListTileLocation(
-                  location: '${item['namaProvinsi']}',
-                  onTap: (){
-                    Navigator.of(context).pushNamed(RouterGenerator.routeKabupaten, arguments: idProv);
-                  },
-                );
-              });
-          } else {
-            return Container();
-          }
-        },
-      )
-    );
+        body: StreamBuilder(
+          stream: bloc.stream,
+          initialData: Status.loading,
+          builder: (BuildContext context, AsyncSnapshot<Status> snapshot) {
+            var status = snapshot.data;
+            if (status == Status.loading) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (status == Status.failure) {
+              return Align(
+                alignment: Alignment.center,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Gagal memuat data'),
+                    RaisedButton(
+                      child: Text('ulangi'),
+                      onPressed: () {
+                        _loadAllProvinsi();
+                      },
+                    )
+                  ],
+                ),
+              );
+            } else if (status == Status.success) {
+              return ListView.builder(
+                  itemCount: _listProvinsi.length,
+                  itemBuilder: (context, index) {
+                    var item = _listProvinsi[index];
+                    int idProv = item['id'];
+                    return ListTileLocation(
+                      location: '${item['namaProvinsi']}',
+                      onTap: () {
+                        Navigator.of(context).pushNamed(
+                            RouterGenerator.routeKabupaten,
+                            arguments: idProv);
+                      },
+                    );
+                  });
+            } else {
+              return Container();
+            }
+          },
+        ));
   }
 }

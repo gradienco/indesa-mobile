@@ -16,9 +16,8 @@ class ListKabupatenPage extends StatefulWidget {
 }
 
 class _ListKabupatenPageState extends State<ListKabupatenPage> {
-
   GraphQlConfig _config = GraphQlConfig();
-  List<dynamic> _listKabupaten;
+  List<dynamic> _listKabupaten = [];
   var bloc = KabupatenBloc();
 
   @override
@@ -35,10 +34,7 @@ class _ListKabupatenPageState extends State<ListKabupatenPage> {
     GraphQLClient _client = _config.clientToQuery();
     try {
       var queryResult = await _client.query(
-          QueryOptions(
-              documentNode: gql(getKabupaten(widget.idProvinsi))
-          )
-      );
+          QueryOptions(documentNode: gql(getKabupaten(widget.idProvinsi))));
       _listKabupaten.clear();
       _listKabupaten.addAll(queryResult.data['kabupaten']);
       bloc.sink.add(Status.success);
@@ -51,17 +47,15 @@ class _ListKabupatenPageState extends State<ListKabupatenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(
-            color: cDarkGreen
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: cDarkGreen),
+          title: Text(
+            "Pilih Kabupaten",
+            style: TextStyle(color: cDarkGreen),
+          ),
+          backgroundColor: Colors.white,
+          elevation: 3,
         ),
-        title: Text("Pilih Kabupaten",
-          style: TextStyle(
-              color: cDarkGreen
-          ),),
-        backgroundColor: Colors.white,
-        elevation: 3,
-      ),
         body: StreamBuilder(
           stream: bloc.stream,
           initialData: Status.loading,
@@ -80,7 +74,7 @@ class _ListKabupatenPageState extends State<ListKabupatenPage> {
                     Text('Gagal memuat data'),
                     RaisedButton(
                       child: Text('ulangi'),
-                      onPressed: (){
+                      onPressed: () {
                         _loadAllKabupaten();
                       },
                     )
@@ -95,8 +89,10 @@ class _ListKabupatenPageState extends State<ListKabupatenPage> {
                     int idKab = item['id'];
                     return ListTileLocation(
                       location: '${item['namaKabupaten']}',
-                      onTap: (){
-                        Navigator.of(context).pushNamed(RouterGenerator.routeKecamatan, arguments: idKab);
+                      onTap: () {
+                        Navigator.of(context).pushNamed(
+                            RouterGenerator.routeKecamatan,
+                            arguments: idKab);
                       },
                     );
                   });
@@ -108,7 +104,6 @@ class _ListKabupatenPageState extends State<ListKabupatenPage> {
               );
             }
           },
-        )
-    );
+        ));
   }
 }

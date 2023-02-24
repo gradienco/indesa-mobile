@@ -1,9 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-import 'package:indesa_beta/router/router_generator.dart';
-
-enum Status{
+enum Status {
   initial,
   loading,
 }
